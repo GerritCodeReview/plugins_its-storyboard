@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "30a82390_6ff851df",
+        "filename": "BUCK",
+        "patchSetId": 3
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1012623
+      },
+      "writtenOn": "2014-09-15T20:55:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "30dae333_1f47e38a",
+      "range": {
+        "startLine": 7,
+        "startChar": 58,
+        "endLine": 7,
+        "endChar": 60
+      },
+      "revId": "8ce519ee63bd3f04f12c3a3df6116bd858396b95",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "d065072b_9daa0706",
         "filename": "pom.xml",
         "patchSetId": 3
@@ -36,6 +60,30 @@
       "writtenOn": "2014-09-11T13:16:15Z",
       "side": 1,
       "message": "2014?\n\nAnd should this be Android Open Source Project since it\u0027s hosted on gerrit-review?",
+      "range": {
+        "startLine": 3,
+        "startChar": 14,
+        "endLine": 3,
+        "endChar": 18
+      },
+      "revId": "8ce519ee63bd3f04f12c3a3df6116bd858396b95",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "108ddf44_2efe47ce",
+        "filename": "pom.xml",
+        "patchSetId": 3
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1012623
+      },
+      "writtenOn": "2014-09-15T20:55:35Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "d065072b_9daa0706",
       "range": {
         "startLine": 3,
         "startChar": 14,
