@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "30bf43e0_d7781c9b",
+        "filename": "BUCK",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-09-17T04:44:22Z",
+      "side": 1,
+      "message": "Normally we don\u0027t add dummy rules. Add it when tests are really exist?",
+      "range": {
+        "startLine": 18,
+        "startChar": 0,
+        "endLine": 62,
+        "endChar": 1
+      },
+      "revId": "2c5069bb471cd5f82c45b35982614de01238ea23",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30bf43e0_b77da889",
+        "filename": "pom.xml",
+        "patchSetId": 5
+      },
+      "lineNbr": 126,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-09-17T04:44:22Z",
+      "side": 1,
+      "message": "Same here.",
+      "range": {
+        "startLine": 103,
+        "startChar": 4,
+        "endLine": 126,
+        "endChar": 17
+      },
+      "revId": "2c5069bb471cd5f82c45b35982614de01238ea23",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
