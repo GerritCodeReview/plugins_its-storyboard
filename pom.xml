@@ -27,14 +27,19 @@ limitations under the License.
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <Gerrit-PluginName>${project.artifactId}</Gerrit-PluginName>
     <Gerrit-ApiType>plugin</Gerrit-ApiType>
     <Gerrit-ReloadMode>reload</Gerrit-ReloadMode>
-    <Gerrit-PluginName>its-storyboard</Gerrit-PluginName>
-    <Gerrit-InitStep>com.googlesource.gerrit.plugins.hooks.sb.InitStoryboard</Gerrit-InitStep>
-    <Gerrit-Module>com.googlesource.gerrit.plugins.hooks.sb.StoryboardModule</Gerrit-Module>
-    <easymockVersion>3.0</easymockVersion>
+    <Gerrit-Module>com.googlesource.gerrit.plugins.its.storyboard.StoryboardModule</Gerrit-Module>
+    <Implementation-Vendor>Hewlett Packard Corp.</Implementation-Vendor>
+    <Implementation-Url>https://gerrit.googlesource.com/plugins/its-storyboard</Implementation-Url>
+    <Implementation-Title>${project.artifactId} plugin</Implementation-Title>
+    <easymockVersion>3.1</easymockVersion>
     <powermockVersion>1.5</powermockVersion>
     <slf4jVersion>1.6.2</slf4jVersion>
+    <powermockVersion>1.5</powermockVersion>
+    <httpclientVersion>4.3.4</httpclientVersion>
+    <gsonVersion>2.1</gsonVersion>
   </properties>
 
   <build>
@@ -68,15 +73,14 @@ limitations under the License.
               <transformer
                 implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                 <manifestEntries>
-                  <Implementation-Vendor>Openstack</Implementation-Vendor>
-                  <Implementation-URL>https://www.openstack.org/</Implementation-URL>
-                  <Implementation-Title>Plugin ${project.artifactId}</Implementation-Title>
+                  <Implementation-Vendor>${Implementation-Vendor}</Implementation-Vendor>
+                  <Implementation-URL>${Implementation-Url}</Implementation-URL>
+                  <Implementation-Title>${Implementation-Title}</Implementation-Title>
                   <Implementation-Version>${project.version}</Implementation-Version>
                   <Gerrit-ApiType>${Gerrit-ApiType}</Gerrit-ApiType>
                   <Gerrit-ApiVersion>${project.version}</Gerrit-ApiVersion>
                   <Gerrit-ReloadMode>${Gerrit-ReloadMode}</Gerrit-ReloadMode>
                   <Gerrit-PluginName>${Gerrit-PluginName}</Gerrit-PluginName>
-                  <Gerrit-InitStep>${Gerrit-InitStep}</Gerrit-InitStep>
                   <Gerrit-Module>${Gerrit-Module}</Gerrit-Module>
                 </manifestEntries>
               </transformer>
@@ -99,6 +103,40 @@ limitations under the License.
       <groupId>com.googlesource.gerrit.plugins.its</groupId>
       <artifactId>its-base</artifactId>
       <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>${httpclientVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gsonVersion}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4jVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+      <version>${easymockVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-module-junit4</artifactId>
+      <version>${powermockVersion}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.powermock</groupId>
+      <artifactId>powermock-api-easymock</artifactId>
+      <version>${powermockVersion}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
