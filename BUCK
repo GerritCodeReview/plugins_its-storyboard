@@ -4,14 +4,16 @@ gerrit_plugin(
   resources = glob(['src/main/resources/**/*']),
   manifest_entries = [
     'Gerrit-PluginName: its-storyboard',
-    'Gerrit-Module: com.googlesource.gerrit.plugins.hooks.bz.InitStoryboard',
-    'Gerrit-InitStep: com.googlesource.gerrit.plugins.hooks.bz.StoryboardModule',
+    'Gerrit-Module: com.googlesource.gerrit.plugins.hooks.sb.StoryboardModule',
+    'Gerrit-InitStep: com.googlesource.gerrit.plugins.hooks.sb.InitStoryboard',
     'Gerrit-ReloadMode: reload',
     'Implementation-Title: Plugin its-storyboard',
-    'Implementation-URL: https://www.wikimediafoundation.org',
+    'Implementation-URL: https://www.openstack.org',
   ],
   deps = [
     '//plugins/its-base:its-base__plugin',
+    '//plugins/its-storyboard/lib:httpcore',
+    '//plugins/its-storyboard/lib:httpclient',
   ],
 )
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Copyright (C) 2011 The Openstack Open Source Project
+Copyright (C) 2014 The Android Open Source Project
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -30,11 +30,12 @@ limitations under the License.
     <Gerrit-ApiType>plugin</Gerrit-ApiType>
     <Gerrit-ReloadMode>reload</Gerrit-ReloadMode>
     <Gerrit-PluginName>its-storyboard</Gerrit-PluginName>
-    <Gerrit-InitStep>com.googlesource.gerrit.plugins.hooks.bz.InitStoryboard</Gerrit-InitStep>
-    <Gerrit-Module>com.googlesource.gerrit.plugins.hooks.bz.StoryboardModule</Gerrit-Module>
+    <Gerrit-InitStep>com.googlesource.gerrit.plugins.hooks.sb.InitStoryboard</Gerrit-InitStep>
+    <Gerrit-Module>com.googlesource.gerrit.plugins.hooks.sb.StoryboardModule</Gerrit-Module>
     <easymockVersion>3.0</easymockVersion>
     <powermockVersion>1.5</powermockVersion>
     <slf4jVersion>1.6.2</slf4jVersion>
+    <httpclientVersion>4.3.5</httpclientVersion>
   </properties>
 
   <build>
@@ -123,6 +124,11 @@ limitations under the License.
       <artifactId>powermock-api-easymock</artifactId>
       <version>${powermockVersion}</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>${httpclientVersion}</version>
     </dependency>
   </dependencies>
 
