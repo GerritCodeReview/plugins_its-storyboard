@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "10cb2096_f341f0d6",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 2
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-16T21:09:53Z",
+      "side": 1,
+      "message": "\"storyboard task tracking system\".\n\nMay be provide a couple of links for non OpenStack guys, who may be interessted?\n\n* [1] https://github.com/openstack-infra/storyboard\n* [2] https://wiki.openstack.org/wiki/StoryBoard",
+      "range": {
+        "startLine": 9,
+        "startChar": 47,
+        "endLine": 9,
+        "endChar": 57
+      },
+      "revId": "dcee82eab490cbfb43de75037f4d4168dbe36618",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "10cb2096_d346f4ec",
+        "filename": "BUCK",
+        "patchSetId": 2
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2014-10-16T21:09:53Z",
+      "side": 1,
+      "message": "Unless you are providing standalone build, what you havn\u0027t done yet, you can probably reference those artifact from Gerrit tree?",
+      "range": {
+        "startLine": 15,
+        "startChar": 4,
+        "endLine": 16,
+        "endChar": 46
+      },
+      "revId": "dcee82eab490cbfb43de75037f4d4168dbe36618",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
