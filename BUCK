@@ -82,6 +82,7 @@ java_test(
   deps = [
     ':its-storyboard__plugin',
     ':its-storyboard_tests-utils',
+    ':its-base_stripped',
     '//gerrit-plugin-api:lib',
     '//plugins/its-storyboard/lib:easymock',
     '//lib:guava',
