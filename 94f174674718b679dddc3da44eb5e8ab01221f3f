@@ -22,6 +22,30 @@
       "revId": "94f174674718b679dddc3da44eb5e8ab01221f3f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "50d76e7e_ea664725",
+        "filename": "BUCK",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2015-05-01T21:03:21Z",
+      "side": 1,
+      "message": "Note that this is only for the test artifact.\n\nThere, it\u0027s really needed in the deps, as listing it only in\nthe provided_deps results in an error:\n\n  /home/christian/sources/Wikimedia/gerrit/dev/master/gerrit/plugins/its-storyboard/src/test/java/com/googlesource/gerrit/plugins/its/storyboard/StoryboardItsFacadeTest.java:37: error: cannot access com.googlesource.gerrit.plugins.hooks.its.ItsFacade\n    String actual \u003d itsFacade.createLinkForWebui(\"Test-Url\", \"Test-Text\");\n                             ^\n  class file for com.googlesource.gerrit.plugins.hooks.its.ItsFacade not found\nErrors: 1. Warnings: 1.\n\n\n(Note that since this is for Java 8, you actually have to use Java 8 to see this error)",
+      "parentUuid": "50d76e7e_aa5c4f5b",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 25
+      },
+      "revId": "94f174674718b679dddc3da44eb5e8ab01221f3f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
