@@ -46,6 +46,30 @@
       "revId": "94f174674718b679dddc3da44eb5e8ab01221f3f",
       "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "30dafaa9_89487991",
+        "filename": "BUCK",
+        "patchSetId": 1
+      },
+      "lineNbr": 85,
+      "author": {
+        "id": 1011323
+      },
+      "writtenOn": "2015-05-01T21:45:34Z",
+      "side": 1,
+      "message": "Thanks. I missed the fact, that this was only for test artifact.",
+      "parentUuid": "50d76e7e_ea664725",
+      "range": {
+        "startLine": 85,
+        "startChar": 4,
+        "endLine": 85,
+        "endChar": 25
+      },
+      "revId": "94f174674718b679dddc3da44eb5e8ab01221f3f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
     }
   ]
 }
