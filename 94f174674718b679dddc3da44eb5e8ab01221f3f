@@ -25,6 +25,30 @@
     },
     {
       "key": {
+        "uuid": "13650596_28e12bbd",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 19,
+      "author": {
+        "id": 1012155
+      },
+      "writtenOn": "2015-07-04T14:57:10Z",
+      "side": 1,
+      "message": "For me, the commit message is quite long already.\n\nAdding information around Java 8 language design\nwould not help understanding the change or it\u0027s motivation.\nIt would only make the commit message even longer.\n\nBut there is already enough context to allow people to dive\nfurther in, if they are being curious on why Java 8 requires\nthis.",
+      "parentUuid": "f367919d_e7010210",
+      "range": {
+        "startLine": 18,
+        "startChar": 66,
+        "endLine": 19,
+        "endChar": 36
+      },
+      "revId": "94f174674718b679dddc3da44eb5e8ab01221f3f",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "50d76e7e_aa5c4f5b",
         "filename": "BUCK",
         "patchSetId": 1
