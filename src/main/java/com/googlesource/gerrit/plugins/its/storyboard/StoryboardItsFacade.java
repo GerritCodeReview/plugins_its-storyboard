@@ -102,11 +102,10 @@ public class StoryboardItsFacade implements ItsFacade {
 
   @Override
   public String createLinkForWebui(String url, String text) {
-    String ret = "[" + url;
+    String ret = url;
     if (text != null && !text.isEmpty() && !text.equals(url)) {
-      ret += "|" + text;
+        ret = "[" + text + "]" + "(" + url + ")";
     }
-    ret += "]";
     return ret;
   }
 }
