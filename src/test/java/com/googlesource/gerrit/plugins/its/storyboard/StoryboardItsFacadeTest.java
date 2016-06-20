@@ -36,7 +36,7 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
     StoryboardItsFacade itsFacade = createStoryboardItsFacade();
     String actual = itsFacade.createLinkForWebui("Test-Url", "Test-Text");
 
-    assertEquals("[Test-Url|Test-Text]", actual);
+    assertEquals("[Test-Text](Test-Url)", actual);
   }
 
   public void testCreateLinkForWebUiSameUrlAndText() {
@@ -47,7 +47,7 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
     StoryboardItsFacade itsFacade = createStoryboardItsFacade();
     String actual = itsFacade.createLinkForWebui("Test-Url", "Test-Url");
 
-    assertEquals("[Test-Url]", actual);
+    assertEquals("Test-Url", actual);
   }
 
   public void testCreateLinkForWebUiNullText() {
@@ -58,7 +58,7 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
     StoryboardItsFacade itsFacade = createStoryboardItsFacade();
     String actual = itsFacade.createLinkForWebui("Test-Url", null);
 
-    assertEquals("[Test-Url]", actual);
+    assertEquals("Test-Url", actual);
   }
 
   public void testCreateLinkForWebUiEmptyText() {
@@ -69,7 +69,7 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
     StoryboardItsFacade itsFacade = createStoryboardItsFacade();
     String actual = itsFacade.createLinkForWebui("Test-Url", "");
 
-    assertEquals("[Test-Url]", actual);
+    assertEquals("Test-Url", actual);
   }
 
   private StoryboardItsFacade createStoryboardItsFacade() {
