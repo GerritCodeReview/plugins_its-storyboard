@@ -51,64 +51,49 @@ public class StoryboardClient {
 
   // generic method to get data from a REST endpoint
   public String getData(final String url) throws IOException {
-    CloseableHttpClient client = HttpClients.createDefault();
-    String responseJson = null;
 
-    try {
-      HttpGet httpget = new HttpGet(url);
+    HttpGet httpget = new HttpGet(url);
+    try (CloseableHttpClient client = HttpClients.createDefault();
+      CloseableHttpResponse response = client.execute(httpget)) {
       log.debug("Making request for " + httpget.getRequestLine());
-      CloseableHttpResponse response = client.execute(httpget);
-      try {
-        StatusLine sl = response.getStatusLine();
-        int responseCode = sl.getStatusCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-          log.debug("Retreiving data from response " + httpget.getRequestLine());
-          InputStream inputStream = response.getEntity().getContent();
-          Reader reader = new InputStreamReader(inputStream);
-          int contentLength = (int) response.getEntity().getContentLength();
-          char[] charArray = new char[contentLength];
-          reader.read(charArray);
-          responseJson = new String(charArray);
-          log.debug("Data retreived: " + responseJson);
-        } else {
-          log.error("Failed request: " + httpget.getRequestLine() +
-              " with response: " + responseCode);
-        }
-      } finally {
-        response.close();
+      StatusLine sl = response.getStatusLine();
+      int responseCode = sl.getStatusCode();
+      if (responseCode == HttpURLConnection.HTTP_OK) {
+        log.debug("Retreiving data from response " + httpget.getRequestLine());
+        InputStream inputStream = response.getEntity().getContent();
+        Reader reader = new InputStreamReader(inputStream);
+        int contentLength = (int) response.getEntity().getContentLength();
+        char[] charArray = new char[contentLength];
+        reader.read(charArray);
+        String responseJson = new String(charArray);
+        log.debug("Data retreived: " + responseJson);
+        return responseJson;
+      } else {
+        log.error("Failed request: " + httpget.getRequestLine() +
+            " with response: " + responseCode);
       }
-    } finally {
-      client.close();
     }
-    return responseJson;
+    return null;
   }
 
   // generic method to POST data with a REST endpoint
   public void postData(final String url, final String data)
       throws IOException {
-    CloseableHttpClient httpclient = HttpClients.createDefault();
 
-    try {
-      HttpPost httpPost = new HttpPost(url);
-      httpPost.addHeader("Authorization", "Bearer " + password);
-      httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
-      httpPost.setEntity(new StringEntity(data, "utf-8"));
-
+    HttpPost httpPost = new HttpPost(url);
+    httpPost.addHeader("Authorization", "Bearer " + password);
+    httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
+    httpPost.setEntity(new StringEntity(data, "utf-8"));
+    try (CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpResponse response = httpclient.execute(httpPost)) {
       log.debug("Executing request " + httpPost.getRequestLine());
-      CloseableHttpResponse response = httpclient.execute(httpPost);
-      try {
-        int responseCode = response.getStatusLine().getStatusCode();
-        if (responseCode == HttpURLConnection.HTTP_OK) {
-          log.info("Updated " + url + " with " + data);
-        } else {
-          log.error("Failed to add comment, response: " + responseCode +
-              " (" + response.getStatusLine().getReasonPhrase() + ")");
-        }
-      } finally {
-        response.close();
+      int responseCode = response.getStatusLine().getStatusCode();
+      if (responseCode == HttpURLConnection.HTTP_OK) {
+        log.info("Updated " + url + " with " + data);
+      } else {
+        log.error("Failed to post, response: " + responseCode +
+            " (" + response.getStatusLine().getReasonPhrase() + ")");
       }
-    } finally {
-      httpclient.close();
     }
   }
 
