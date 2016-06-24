@@ -58,14 +58,14 @@ public class StoryboardItsFacade implements ItsFacade {
   public void addComment(final String issueId, final String comment) {
 
     if (!exists(issueId)) {
-      log.warn("Story " + issueId + " does not exist, nothing to update");
+      log.warn("Storyboard item " + issueId + " does not exist");
       return;
     }
 
     try {
       client.addComment(issueId, comment);
     } catch (IOException e) {
-      log.error("Error: could not add comment to issue " + issueId);
+      log.error("Error: unable to comment " + issueId);
     }
     log.info("Updated " + issueId + "with comment: " + comment);
   }
@@ -91,7 +91,7 @@ public class StoryboardItsFacade implements ItsFacade {
     try {
       info = client.getStory(issudeId);
     } catch (IOException e) {
-      log.error("Error: Storyboard is not accessible");
+      log.error("Error: Storyboard is not accessible at: " + GERRIT_CONFIG_URL);
     }
     if (info != null) {
       log.debug("Story exists, info: " + info);
