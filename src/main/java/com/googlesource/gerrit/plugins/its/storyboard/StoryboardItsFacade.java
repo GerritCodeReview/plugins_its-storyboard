@@ -30,7 +30,6 @@ import com.googlesource.gerrit.plugins.its.base.its.ItsFacade;
 public class StoryboardItsFacade implements ItsFacade {
   private final Logger log = LoggerFactory.getLogger(StoryboardItsFacade.class);
 
-  private static final String GERRIT_CONFIG_USERNAME = "username";
   private static final String GERRIT_CONFIG_PASSWORD = "password";
   private static final String GERRIT_CONFIG_URL = "url";
 
@@ -40,12 +39,10 @@ public class StoryboardItsFacade implements ItsFacade {
   public StoryboardItsFacade(@PluginName String pluginName,
       @GerritServerConfig Config cfg) {
     final String url = cfg.getString(pluginName, null, GERRIT_CONFIG_URL);
-    final String username = cfg.getString(pluginName, null,
-            GERRIT_CONFIG_USERNAME);
     final String password = cfg.getString(pluginName, null,
             GERRIT_CONFIG_PASSWORD);
 
-    this.client = new StoryboardClient(url, username, password);
+    this.client = new StoryboardClient(url, password);
   }
 
   @Override
