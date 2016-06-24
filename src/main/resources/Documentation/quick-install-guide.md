@@ -48,8 +48,7 @@ Example:
 ```
 [@PLUGIN@]
   url=https://my_storyboard_instance.com
-  username=USERNAME_TO_CONNECT_TO_STORYBOARD
-  password=AUTH_TOKEN_FOR_ABOVE_USERNAME
+  password=STORYBOARD_USER_AUTH_TOKEN
 ```
 
 [its-associate-change]: #its-associate-change

@@ -79,8 +79,6 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
   private void mockUnconnectableStoryboard() {
     expect(serverConfig.getString("its-storyboard",  null, "url"))
     .andReturn("<no-url>").anyTimes();
-    expect(serverConfig.getString("its-storyboard",  null, "username"))
-    .andReturn("none").anyTimes();
     expect(serverConfig.getString("its-storyboard",  null, "password"))
     .andReturn("none").anyTimes();
   }

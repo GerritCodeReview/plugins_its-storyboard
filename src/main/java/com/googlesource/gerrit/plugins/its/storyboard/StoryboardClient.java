@@ -39,13 +39,10 @@ public class StoryboardClient {
   public static final String SYS_INFO_ENDPOINT = "/api/v1/systeminfo";
 
   private final String baseUrl;
-  private final String username;
   private final String password;
 
-  public StoryboardClient(final String baseUrl, final String username,
-      String password) {
+  public StoryboardClient(final String baseUrl, String password) {
     this.baseUrl = baseUrl;
-    this.username = username;
     this.password = password;
   }
 
