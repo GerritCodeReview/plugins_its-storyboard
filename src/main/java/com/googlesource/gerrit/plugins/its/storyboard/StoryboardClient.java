@@ -19,6 +19,10 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.HttpURLConnection;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -37,6 +41,7 @@ public class StoryboardClient {
 
   public static final String STORIES_ENDPOINT = "/api/v1/stories";
   public static final String SYS_INFO_ENDPOINT = "/api/v1/systeminfo";
+  public static final String TASKS_ENDPOINT = "/api/v1/tasks";
 
   private final String baseUrl;
   private final String username;
@@ -101,14 +106,25 @@ public class StoryboardClient {
     return getData(this.baseUrl + SYS_INFO_ENDPOINT);
   }
 
-  public String getStory(final String issueId) throws IOException {
-    return getData(this.baseUrl + STORIES_ENDPOINT + "/" + issueId);
+  public String getStory(final String id) throws IOException {
+    return getData(this.baseUrl + STORIES_ENDPOINT + "/" + getStoryId(id));
+  }
+
+  public int getStoryId(final String issueId) throws IOException {
+    String taskJson = getTask(issueId);
+    JsonObject jobj = new Gson().fromJson(taskJson, JsonObject.class);
+    return jobj.get("story_id").getAsInt();
+  }
+
+  public String getTask(final String issueId) throws IOException {
+    return getData(this.baseUrl + TASKS_ENDPOINT + "/" + issueId);
   }
 
   public void addComment(final String issueId, final String comment)
       throws IOException {
-    log.debug("Posting comment with data: ({},{})", issueId, comment);
-    final String url = baseUrl+STORIES_ENDPOINT+"/"+issueId+"/comments";
+    int story_id = getStoryId(issueId);
+    log.debug("Posting comment with data: ({},{})", story_id, comment);
+    final String url = baseUrl + STORIES_ENDPOINT + "/" + story_id + "/comments";
     final String escapedComment = comment.replace("\n", "\\n");
     final String json =
         "{\"story_id\":\"" + issueId + "\",\"content\":\"" +
