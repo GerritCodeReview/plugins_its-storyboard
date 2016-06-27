@@ -79,10 +79,31 @@ public class StoryboardItsFacade implements ItsFacade {
 
   @Override
   public void performAction(final String issueId, final String actionString) {
-    // No custom actions at this point.
-    //
-    // Note that you can use hashtag names in comments to associate a task
-    // with a new project.
+    String actionName = actionString.substring(0, actionString.indexOf(" ")).toLowerCase();
+    String actionValue = actionString.substring(actionString.indexOf(" ") + 1).toLowerCase();
+
+    if (actionValue.isEmpty()) {
+      log.error("Error: missing action value, nothing to do.");
+      return;
+    }
+
+    try {
+      if (actionName.equals("set-status")) {
+        if (!client.getTaskStatus(issueId).toLowerCase().equals(actionValue)) {
+          client.setStatus(issueId, actionValue);
+        }
+      } else if (actionName.equals("set-notes")) {
+        if (!client.getTaskNotes(issueId).toLowerCase().contains(actionValue)) {
+          //TODO: need to add a note with gerrit url
+          client.addNote(issueId, "should be gerrit change url");
+        }
+      } else  {
+        log.error("Error: Invalid action " + actionName);
+      }
+    } catch (IOException e) {
+      log.error("Error: " + actionName + " to " + actionValue + " on task " + issueId + " failed.");
+    }
+    log.info("Updated task " + issueId + " with status: " + actionValue);
   }
 
   @Override
