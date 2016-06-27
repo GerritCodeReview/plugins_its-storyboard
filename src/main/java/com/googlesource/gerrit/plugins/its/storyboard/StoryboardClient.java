@@ -21,6 +21,7 @@ import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -98,6 +99,26 @@ public class StoryboardClient {
     }
   }
 
+  // generic method to PUT data with a REST endpoint
+  public void putData(final String url, final String data) throws IOException {
+
+    HttpPut HttpPut = new HttpPut(url);
+    HttpPut.addHeader("Authorization", "Bearer " + password);
+    HttpPut.addHeader("Content-Type", "application/json; charset=utf-8");
+    HttpPut.setEntity(new StringEntity(data, "utf-8"));
+    try (CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpResponse response = httpclient.execute(HttpPut)) {
+      log.debug("Executing request " + HttpPut.getRequestLine());
+      int responseCode = response.getStatusLine().getStatusCode();
+      if (responseCode == HttpURLConnection.HTTP_OK) {
+        log.info("Updated " + url + " with " + data);
+      } else {
+        log.error("Failed to post, response: " + responseCode + " ("
+            + response.getStatusLine().getReasonPhrase() + ")");
+      }
+    }
+  }
+
   public String getSysInfo() throws IOException {
     return getData(this.baseUrl + SYS_INFO_ENDPOINT);
   }
@@ -114,6 +135,28 @@ public class StoryboardClient {
 
   public String getTask(final String issueId) throws IOException {
     return getData(this.baseUrl + TASKS_ENDPOINT + "/" + issueId);
+  }
+
+  public void setStatus(final String issueId, final String status)
+      throws IOException {
+    log.debug("PUT task with data: ({},{})", issueId, status);
+    final String url = baseUrl + TASKS_ENDPOINT + "/" + issueId;
+    final String json =
+        "{\"task_id\":\"" + issueId + "\",\"status\":\"" + status + "\"}";
+
+    putData(url, json);
+  }
+
+  public String getTaskStatus(final String issueId) throws IOException {
+    String taskJson = getTask(issueId);
+    JsonObject jobj = new Gson().fromJson(taskJson, JsonObject.class);
+    return jobj.get("status").getAsString();
+  }
+
+  public String getTaskNotes(final String issueId) throws IOException {
+    String taskJson = getTask(issueId);
+    JsonObject jobj = new Gson().fromJson(taskJson, JsonObject.class);
+    return jobj.get("link").getAsString();
   }
 
   public void addComment(final String issueId, final String comment)
