@@ -76,10 +76,24 @@ public class StoryboardItsFacade implements ItsFacade {
 
   @Override
   public void performAction(final String issueId, final String actionString) {
-    // No custom actions at this point.
-    //
-    // Note that you can use hashtag names in comments to associate a task
-    // with a new project.
+    String actionName = actionString.substring(0, actionString.indexOf(" ")).toLowerCase();
+    String actionValue = actionString.substring(actionString.indexOf(" ") + 1).toLowerCase();
+
+    if (actionValue.isEmpty()) {
+      log.info("Missing action value, nothing to do.");
+      return;
+    }
+
+    try {
+      if (actionName.equals("set-status")) {
+        if (!client.getTaskStatus(issueId).toLowerCase().equals(actionValue)) {
+          client.setStatus(issueId, actionValue);
+        }
+      }
+    } catch (IOException e) {
+      log.error("Error: " + actionName + " to " + actionValue + " on task " + issueId + " failed.");
+    }
+    log.info("Updated task " + issueId + " with status: " + actionValue);
   }
 
   @Override
