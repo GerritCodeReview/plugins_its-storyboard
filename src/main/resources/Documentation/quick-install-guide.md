@@ -92,9 +92,15 @@ Example of actions.config:
 [rule "comment-on-status-update"]
     event-type = patchset-created,change-abandoned,change-restored,change-merged
     action = add-standard-comment
+# set task status to 'review' when a patch is uploaded or when a change is restored
+[rule "change_restored"]
+    event-type = patchset-created,change-restored
+    action = set-status REVIEW
 ```
 
-More detailed information on actions is found the [rules documentation][rules-doc]
+### <a id="task-status"></a>TaskStatus
+Valid task status: TODO, REVIEW, INPROGRESS, MERGED, and INVALID 
+
 
 [its-enable]: #its-enable
 <a name="its-enable">Enable the Plugin</a>
@@ -122,3 +128,8 @@ file into the `plugins` folder.
 [config-common-doc]: config-common.html
 [config-doc]: config.html
 [rules-doc]: config-rulebase-common.html
+
+
+SEE ALSO
+--------
+* More detailed information on actions is found the [rules documentation][rules-doc]
