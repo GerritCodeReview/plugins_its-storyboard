@@ -39,8 +39,8 @@ public class StoryboardItsFacade implements ItsFacade {
   public StoryboardItsFacade(@PluginName String pluginName,
       @GerritServerConfig Config cfg) {
     final String url = cfg.getString(pluginName, null, GERRIT_CONFIG_URL);
-    final String password = cfg.getString(pluginName, null,
-            GERRIT_CONFIG_PASSWORD);
+    final String password =
+        cfg.getString(pluginName, null, GERRIT_CONFIG_PASSWORD);
 
     this.client = new StoryboardClient(url, password);
   }
@@ -70,16 +70,29 @@ public class StoryboardItsFacade implements ItsFacade {
   @Override
   public void addRelatedLink(final String issueId, final URL relatedUrl,
       String description) throws IOException {
-    addComment(issueId, "Related URL: " + createLinkForWebui(
-        relatedUrl.toExternalForm(), description));
+    addComment(issueId, "Related URL: "
+        + createLinkForWebui(relatedUrl.toExternalForm(), description));
   }
 
   @Override
   public void performAction(final String issueId, final String actionString) {
-    // No custom actions at this point.
-    //
-    // Note that you can use hashtag names in comments to associate a task
-    // with a new project.
+
+    try {
+      String actionName =
+          actionString.substring(0, actionString.indexOf(" ")).toLowerCase();
+      String actionValue =
+          actionString.substring(actionString.indexOf(" ") + 1).toLowerCase();
+      if (actionName.equals("set-status")) {
+        if (!client.getTaskStatus(issueId).toLowerCase().equals(actionValue)) {
+          log.info("Updating task " + issueId + " with status: " + actionValue);
+          client.setStatus(issueId, actionValue);
+        }
+      }
+    } catch (StringIndexOutOfBoundsException e) {
+      log.error("Error: Invalid action: " + actionString);
+    } catch (IOException e) {
+      log.error("Error: Failed to peform action: " + actionString);
+    }
   }
 
   @Override
