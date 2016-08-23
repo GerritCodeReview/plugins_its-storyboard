@@ -125,9 +125,9 @@ Example:
 In order to install the @PLUGIN@ plugin simply copy the built jar
 file into the `plugins` folder.
 
-[config-common-doc]: config-common.html
-[config-doc]: config.html
-[rules-doc]: config-rulebase-common.html
+[config-common-doc]: config-common.md
+[config-doc]: config.md
+[rules-doc]: config-rulebase-common.md
 
 
 SEE ALSO

@@ -9,7 +9,7 @@ story's status upon an update to an associated Gerrit change.
 For details on how to install this plugin start with the
 [Quick Install Guide][quick].
 
-[quick]: quick-install-guide.html
+[quick]: quick-install-guide.md
 [its-base]: https://gerrit-review.googlesource.com/#/admin/projects/plugins/its-base
 [storyboard]: http://git.openstack.org/cgit/openstack-infra/storyboard
 
