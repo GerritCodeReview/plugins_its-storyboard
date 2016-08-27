@@ -1,0 +1,55 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "457a8ef7_887577d9",
+        "filename": "src/main/resources/Documentation/quick-install-guide.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1012623
+      },
+      "writtenOn": "2016-08-27T07:11:20Z",
+      "side": 1,
+      "message": "change-in-progress",
+      "revId": "0ed99f8a9d69eb7237e23ffb4b5a2ec0fff254ae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "85848625_ea7c27c1",
+        "filename": "src/main/resources/Documentation/quick-install-guide.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1012623
+      },
+      "writtenOn": "2016-08-27T07:11:20Z",
+      "side": 1,
+      "message": "Make an update to this change",
+      "revId": "0ed99f8a9d69eb7237e23ffb4b5a2ec0fff254ae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "457a8ef7_689123f7",
+        "filename": "src/main/resources/Documentation/quick-install-guide.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 162,
+      "author": {
+        "id": 1012623
+      },
+      "writtenOn": "2016-08-27T07:11:20Z",
+      "side": 1,
+      "message": "plugin should",
+      "revId": "0ed99f8a9d69eb7237e23ffb4b5a2ec0fff254ae",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    }
+  ]
+}
