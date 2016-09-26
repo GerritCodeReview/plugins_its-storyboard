@@ -1,3 +1,5 @@
+include_defs('//bucklets/gerrit_plugin.bucklet')
+
 gerrit_plugin(
   name = 'its-storyboard',
   srcs = glob(['src/main/java/**/*.java']),
@@ -55,16 +57,13 @@ java_test(
   name = 'its-storyboard_tests',
   srcs = glob(['src/test/java/**/*.java']),
   labels = ['its-storyboard'],
-  source_under_test = [':its-storyboard__plugin'],
-  deps = [
+  deps = GERRIT_PLUGIN_API + GERRIT_TESTS + [
     ':its-storyboard__plugin',
     '//plugins/its-base:its-base_tests-utils',
     ':its-base_stripped',
-    '//gerrit-plugin-api:lib',
     '//lib/easymock:easymock',
     '//lib:guava',
     '//lib/guice:guice',
-    '//lib/jgit:jgit',
     '//lib:junit',
     '//lib/log:api',
     '//lib/log:impl_log4j',
