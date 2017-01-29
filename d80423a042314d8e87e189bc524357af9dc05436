@@ -48,6 +48,29 @@
     },
     {
       "key": {
+        "uuid": "117baaff_56e08d09",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "Jan 29, 2017 10:46:08 AM",
+      "side": 1,
+      "message": "Thanks, done.",
+      "range": {
+        "startLine": 10,
+        "startChar": 22,
+        "endLine": 10,
+        "endChar": 36
+      },
+      "revId": "d80423a042314d8e87e189bc524357af9dc05436",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "0b236109_ad8fbc6d",
         "filename": "src/main/resources/Documentation/build.md",
         "patchSetId": 6
@@ -82,6 +105,52 @@
       "writtenOn": "Jan 29, 2017 10:33:18 AM",
       "side": 1,
       "message": "@PLUGIN@",
+      "range": {
+        "startLine": 16,
+        "startChar": 25,
+        "endLine": 16,
+        "endChar": 39
+      },
+      "revId": "d80423a042314d8e87e189bc524357af9dc05436",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "29d2943a_803ef80f",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "Jan 29, 2017 10:46:08 AM",
+      "side": 1,
+      "message": "Thanks, done.",
+      "range": {
+        "startLine": 16,
+        "startChar": 40,
+        "endLine": 16,
+        "endChar": 54
+      },
+      "revId": "d80423a042314d8e87e189bc524357af9dc05436",
+      "serverId": "173816e5-2b9a-37c3-8a2e-48639d4f1153",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3e792fbd_8858c885",
+        "filename": "src/main/resources/Documentation/build.md",
+        "patchSetId": 6
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1029953
+      },
+      "writtenOn": "Jan 29, 2017 10:46:08 AM",
+      "side": 1,
+      "message": "Thanks, done.",
       "range": {
         "startLine": 16,
         "startChar": 25,
