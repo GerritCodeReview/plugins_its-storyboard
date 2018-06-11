@@ -26,6 +26,8 @@ import com.google.inject.Inject;
 
 import com.googlesource.gerrit.plugins.its.base.ItsHookModule;
 import com.googlesource.gerrit.plugins.its.base.its.ItsFacade;
+import com.googlesource.gerrit.plugins.its.base.its.ItsFacadeFactory;
+import com.googlesource.gerrit.plugins.its.base.its.SingleItsServer;
 
 public class StoryboardModule extends AbstractModule {
 
@@ -51,6 +53,7 @@ public class StoryboardModule extends AbstractModule {
       log.info("Storyboard is configured as ITS");
       bind(ItsFacade.class).toInstance(new StoryboardItsFacade(
           pluginName, gerritConfig));
+      bind(ItsFacadeFactory.class).to(SingleItsServer.class);
       install(new ItsHookModule(pluginName, pluginCfgFactory));
     }
   }
