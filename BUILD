@@ -1,15 +1,14 @@
 load("//tools/bzl:junit.bzl", "junit_tests")
 load(
     "//tools/bzl:plugin.bzl",
-    "gerrit_plugin",
     "PLUGIN_DEPS",
     "PLUGIN_TEST_DEPS",
+    "gerrit_plugin",
 )
 
 gerrit_plugin(
     name = "its-storyboard",
     srcs = glob(["src/main/java/**/*.java"]),
-    resources = glob(["src/main/**/*"]),
     manifest_entries = [
         "Gerrit-PluginName: its-storyboard",
         "Gerrit-Module: com.googlesource.gerrit.plugins.its.storyboard.StoryboardModule",
@@ -17,6 +16,7 @@ gerrit_plugin(
         "Implementation-Title: its-storyboard plugin",
         "Implementation-URL: https://gerrit.googlesource.com/plugins/its-storyboard",
     ],
+    resources = glob(["src/main/**/*"]),
     deps = [
         "//plugins/its-base",
     ],
