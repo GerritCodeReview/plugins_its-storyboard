@@ -67,10 +67,8 @@ public class StoryboardClient {
         String responseJson = new String(charArray);
         log.debug("Data retreived: " + responseJson);
         return responseJson;
-      } else {
-        log.error(
-            "Failed request: " + httpget.getRequestLine() + " with response: " + responseCode);
       }
+      log.error("Failed request: " + httpget.getRequestLine() + " with response: " + responseCode);
     }
     return null;
   }
