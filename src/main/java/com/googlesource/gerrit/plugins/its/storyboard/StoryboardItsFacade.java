@@ -14,18 +14,15 @@
 
 package com.googlesource.gerrit.plugins.its.storyboard;
 
-import java.io.IOException;
-import java.net.URL;
-
-import org.eclipse.jgit.lib.Config;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.server.config.GerritServerConfig;
 import com.google.inject.Inject;
-
 import com.googlesource.gerrit.plugins.its.base.its.ItsFacade;
+import java.io.IOException;
+import java.net.URL;
+import org.eclipse.jgit.lib.Config;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StoryboardItsFacade implements ItsFacade {
   private final Logger log = LoggerFactory.getLogger(StoryboardItsFacade.class);
@@ -36,11 +33,9 @@ public class StoryboardItsFacade implements ItsFacade {
   private final StoryboardClient client;
 
   @Inject
-  public StoryboardItsFacade(@PluginName String pluginName,
-      @GerritServerConfig Config cfg) {
+  public StoryboardItsFacade(@PluginName String pluginName, @GerritServerConfig Config cfg) {
     final String url = cfg.getString(pluginName, null, GERRIT_CONFIG_URL);
-    final String password =
-        cfg.getString(pluginName, null, GERRIT_CONFIG_PASSWORD);
+    final String password = cfg.getString(pluginName, null, GERRIT_CONFIG_PASSWORD);
 
     this.client = new StoryboardClient(url, password);
   }
@@ -68,20 +63,18 @@ public class StoryboardItsFacade implements ItsFacade {
   }
 
   @Override
-  public void addRelatedLink(final String issueId, final URL relatedUrl,
-      String description) throws IOException {
-    addComment(issueId, "Related URL: "
-        + createLinkForWebui(relatedUrl.toExternalForm(), description));
+  public void addRelatedLink(final String issueId, final URL relatedUrl, String description)
+      throws IOException {
+    addComment(
+        issueId, "Related URL: " + createLinkForWebui(relatedUrl.toExternalForm(), description));
   }
 
   @Override
   public void performAction(final String issueId, final String actionString) {
 
     try {
-      String actionName =
-          actionString.substring(0, actionString.indexOf(" ")).toLowerCase();
-      String actionValue =
-          actionString.substring(actionString.indexOf(" ") + 1).toLowerCase();
+      String actionName = actionString.substring(0, actionString.indexOf(" ")).toLowerCase();
+      String actionValue = actionString.substring(actionString.indexOf(" ") + 1).toLowerCase();
       if (actionName.equals("set-status")) {
         if (!client.getTaskStatus(issueId).toLowerCase().equals(actionValue)) {
           log.info("Updating task " + issueId + " with status: " + actionValue);

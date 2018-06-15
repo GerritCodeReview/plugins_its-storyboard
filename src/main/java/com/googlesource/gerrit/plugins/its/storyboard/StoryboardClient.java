@@ -16,7 +16,11 @@ package com.googlesource.gerrit.plugins.its.storyboard;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.HttpURLConnection;
 import org.apache.http.StatusLine;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -28,17 +32,9 @@ import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.net.HttpURLConnection;
-
-
 public class StoryboardClient {
 
-  private static final Logger log =
-      LoggerFactory.getLogger(StoryboardClient.class);
+  private static final Logger log = LoggerFactory.getLogger(StoryboardClient.class);
 
   public static final String STORIES_ENDPOINT = "/api/v1/stories";
   public static final String SYS_INFO_ENDPOINT = "/api/v1/systeminfo";
@@ -72,8 +68,8 @@ public class StoryboardClient {
         log.debug("Data retreived: " + responseJson);
         return responseJson;
       } else {
-        log.error("Failed request: " + httpget.getRequestLine()
-            + " with response: " + responseCode);
+        log.error(
+            "Failed request: " + httpget.getRequestLine() + " with response: " + responseCode);
       }
     }
     return null;
@@ -93,8 +89,12 @@ public class StoryboardClient {
       if (responseCode == HttpURLConnection.HTTP_OK) {
         log.info("Updated " + url + " with " + data);
       } else {
-        log.error("Failed to post, response: " + responseCode + " ("
-            + response.getStatusLine().getReasonPhrase() + ")");
+        log.error(
+            "Failed to post, response: "
+                + responseCode
+                + " ("
+                + response.getStatusLine().getReasonPhrase()
+                + ")");
       }
     }
   }
@@ -113,8 +113,12 @@ public class StoryboardClient {
       if (responseCode == HttpURLConnection.HTTP_OK) {
         log.info("Updated " + url + " with " + data);
       } else {
-        log.error("Failed to post, response: " + responseCode + " ("
-            + response.getStatusLine().getReasonPhrase() + ")");
+        log.error(
+            "Failed to post, response: "
+                + responseCode
+                + " ("
+                + response.getStatusLine().getReasonPhrase()
+                + ")");
       }
     }
   }
@@ -137,12 +141,10 @@ public class StoryboardClient {
     return getData(this.baseUrl + TASKS_ENDPOINT + "/" + issueId);
   }
 
-  public void setStatus(final String issueId, final String status)
-      throws IOException {
+  public void setStatus(final String issueId, final String status) throws IOException {
     log.debug("PUT task with data: ({},{})", issueId, status);
     final String url = baseUrl + TASKS_ENDPOINT + "/" + issueId;
-    final String json =
-        "{\"task_id\":\"" + issueId + "\",\"status\":\"" + status + "\"}";
+    final String json = "{\"task_id\":\"" + issueId + "\",\"status\":\"" + status + "\"}";
 
     putData(url, json);
   }
@@ -159,15 +161,12 @@ public class StoryboardClient {
     return jobj.get("link").getAsString();
   }
 
-  public void addComment(final String issueId, final String comment)
-      throws IOException {
+  public void addComment(final String issueId, final String comment) throws IOException {
     int story_id = getStoryId(issueId);
     log.debug("Posting comment with data: ({},{})", story_id, comment);
-    final String url =
-        baseUrl + STORIES_ENDPOINT + "/" + story_id + "/comments";
+    final String url = baseUrl + STORIES_ENDPOINT + "/" + story_id + "/comments";
     final String escapedComment = comment.replace("\n", "\\n");
-    final String json = "{\"story_id\":\"" + issueId + "\",\"content\":\""
-        + escapedComment + "\"}";
+    final String json = "{\"story_id\":\"" + issueId + "\",\"content\":\"" + escapedComment + "\"}";
 
     postData(url, json);
   }
