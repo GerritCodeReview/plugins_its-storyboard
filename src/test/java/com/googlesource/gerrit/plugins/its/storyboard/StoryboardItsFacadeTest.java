@@ -13,7 +13,8 @@
 // limitations under the License.
 package com.googlesource.gerrit.plugins.its.storyboard;
 
-import static org.easymock.EasyMock.expect;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.config.FactoryModule;
@@ -30,8 +31,6 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
   public void testCreateLinkForWebUiDifferentUrlAndText() {
     mockUnconnectableStoryboard();
 
-    replayMocks();
-
     StoryboardItsFacade itsFacade = createStoryboardItsFacade();
     String actual = itsFacade.createLinkForWebui("Test-Url", "Test-Text");
 
@@ -40,8 +39,6 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
 
   public void testCreateLinkForWebUiSameUrlAndText() {
     mockUnconnectableStoryboard();
-
-    replayMocks();
 
     StoryboardItsFacade itsFacade = createStoryboardItsFacade();
     String actual = itsFacade.createLinkForWebui("Test-Url", "Test-Url");
@@ -52,8 +49,6 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
   public void testCreateLinkForWebUiNullText() {
     mockUnconnectableStoryboard();
 
-    replayMocks();
-
     StoryboardItsFacade itsFacade = createStoryboardItsFacade();
     String actual = itsFacade.createLinkForWebui("Test-Url", null);
 
@@ -62,8 +57,6 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
 
   public void testCreateLinkForWebUiEmptyText() {
     mockUnconnectableStoryboard();
-
-    replayMocks();
 
     StoryboardItsFacade itsFacade = createStoryboardItsFacade();
     String actual = itsFacade.createLinkForWebui("Test-Url", "");
@@ -76,8 +69,8 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
   }
 
   private void mockUnconnectableStoryboard() {
-    expect(serverConfig.getString("its-storyboard", null, "url")).andReturn("<no-url>").anyTimes();
-    expect(serverConfig.getString("its-storyboard", null, "password")).andReturn("none").anyTimes();
+    when(serverConfig.getString("its-storyboard", null, "url")).thenReturn("<no-url>");
+    when(serverConfig.getString("its-storyboard", null, "password")).thenReturn("none");
   }
 
   @Override
@@ -90,7 +83,7 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
   private class TestModule extends FactoryModule {
     @Override
     protected void configure() {
-      serverConfig = createMock(Config.class);
+      serverConfig = mock(Config.class);
       bind(Config.class).annotatedWith(GerritServerConfig.class).toInstance(serverConfig);
       bind(String.class).annotatedWith(PluginName.class).toInstance("its-storyboard");
     }
