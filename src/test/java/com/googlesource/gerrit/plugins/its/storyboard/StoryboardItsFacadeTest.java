@@ -14,6 +14,7 @@
 package com.googlesource.gerrit.plugins.its.storyboard;
 
 import static org.easymock.EasyMock.expect;
+import static org.mockito.Mockito.when;
 
 import com.google.gerrit.extensions.annotations.PluginName;
 import com.google.gerrit.extensions.config.FactoryModule;
@@ -76,8 +77,8 @@ public class StoryboardItsFacadeTest extends LoggingMockingTestCase {
   }
 
   private void mockUnconnectableStoryboard() {
-    expect(serverConfig.getString("its-storyboard", null, "url")).andReturn("<no-url>").anyTimes();
-    expect(serverConfig.getString("its-storyboard", null, "password")).andReturn("none").anyTimes();
+    when(serverConfig.getString("its-storyboard", null, "url")).thenReturn("<no-url>");
+    when(serverConfig.getString("its-storyboard", null, "password")).thenReturn("none");
   }
 
   @Override
